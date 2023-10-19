@@ -1,6 +1,7 @@
 import sqlite3
 import pandas as pd
 
+
 # создаем базу данных и устанавливаем соединение с ней
 connection = sqlite3.connect('./Databases/store(1).db')
 

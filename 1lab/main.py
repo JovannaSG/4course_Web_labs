@@ -89,15 +89,49 @@ from book;
 print(df4)
 print('\n')
 
+print('Задание 5')
+cur = connection.cursor()
+cursor.execute('''
+SELECT name_author AS "Автор",
+    title || ". " || COALESCE(
+        lead(title) OVER (
+            PARTITION BY name_author
+            ORDER BY name_author,
+                price DESC
+        ),
+        FIRST_VALUE(title) OVER (
+            PARTITION BY name_author
+            ORDER BY name_author,
+                price DESC
+        )
+    ) AS title12,
+    price AS "Стоимость",
+    COALESCE(
+        lead(price) OVER (
+            PARTITION BY name_author
+            ORDER BY name_author,
+                price DESC
+        ),
+        MAX(price) OVER (PARTITION BY name_author)
+    ) AS "Стоимость2",
+    ROUND(
+        (
+            price + COALESCE(
+                lead(price) OVER (
+                    PARTITION BY name_author
+                    ORDER BY name_author,
+                        price DESC
+                ),
+                FIRST_VALUE(price) OVER (PARTITION BY name_author)
+            )
+        ) * 0.75,
+        2
+    ) AS "summa"
+FROM book
+    JOIN author ON author.author_id = book.author_id;
+''')
+for e in cursor.fetchall():
+    print(e, end="\n")
+
 # закрываем соединение с базой
 connection.close()
-'''
-SELECT buy_book.book_id, SUM(buy_book.amount) as sum
-from buy_book
-JOIN book on buy_book.book_id = book.book_id
-group by buy_book.book_id
-HAVING sum > (
-  Select AVG(amount)
-  from buy_book
-);
-'''
