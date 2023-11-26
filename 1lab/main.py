@@ -6,7 +6,7 @@ connection = sqlite3.connect('./Databases/store(1).db')
 
 print('1 задание')
 df1 = pd.read_sql('''
-SELECT 
+SELECT
     author.name_author AS Имя_автора,
     book.genre_id,
     book.title AS Название_книги,
