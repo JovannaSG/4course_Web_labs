@@ -23,7 +23,7 @@
 
 ![](/3lab/Screenshot_ufw_status.png)
 
-3. Устанавливаем **ssh**, с помощью команды **sudo  apt  install  ssh**, заходим в **sshd_config**. Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
+2. Устанавливаем **ssh**, с помощью команды **sudo  apt  install  ssh**, заходим в **sshd_config**. Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
 
 ![](/3lab/Screenshot_sshd_config_2.png)
 
@@ -33,7 +33,7 @@
 
 ![](/3lab/Screenshot_ssh_config_1.png)
 
-4. Устанавливаем postgresql (хотя чаще бывает, что postgresql  стоит по умолчанию). Заходим в оболочку postgresql  с помощью команды **sudo -****u** **postgres** **psql**. Создаем базу данных для keycloak и создаем пользователя для управления базой данных. Меняем порт для подключения postgresql
+3. Устанавливаем postgresql (хотя чаще бывает, что postgresql  стоит по умолчанию). Заходим в оболочку postgresql  с помощью команды **sudo -****u** **postgres** **psql**. Создаем базу данных для keycloak и создаем пользователя для управления базой данных. Меняем порт для подключения postgresql
 
 ![](/3lab/port_postgers.png)
 
@@ -41,13 +41,13 @@
 
 ![](/3lab/Screenshot_keycloak_users.png)
 
-5. Скачиваем zip  архив keycloak с официального сайта, распаковываем его. В папке, где распаковали keycloak создаем текстовый файл dockerfile.
+4. Скачиваем zip  архив keycloak с официального сайта, распаковываем его. В папке, где распаковали keycloak создаем текстовый файл dockerfile.
 
 ![](/3lab/Screenshot_dockerfile.png)
 
 Собираем docker image, запускаем docker image.
 
-6. Переходим на сайт 127.0.0.1:8080. Теперь создаем своего клиента
+5. Переходим на сайт 127.0.0.1:8080. Теперь создаем своего клиента
 ![](/3lab/Screenshot_keycloak_client_scopes.png)
 ![](/3lab/Screenshot_keycloak_clients.png)
 
@@ -74,3 +74,23 @@
 ![](/3lab/Screenshot_4_request.png)
 
 # 4 лабораторная работа
+
+Метод **POST** /user – добавление пользователя. Добавляем пользователя do1 с задачей task1.
+
+![](/4lab_restAPI/docs/post_user.png)
+
+Метод **GET** /todo – получение задач пользователей.
+
+![](/4lab_restAPI/docs/get_todo.png)
+
+Метод **DELETE** /todo/{user_id} – удаление пользователя, по заданному id. Удаляем пользователя с id = 2. Если удаление прошло успешно, то возвращается сообщение "the user has been successfully deleted", иначе ошибка 404 – пользователь не найден.
+
+![](/4lab_restAPI/docs/delete_todo_2.png)
+
+![](/4lab_restAPI/docs/delete_todo_2_not_found.png)
+
+Метод **PUT** /todo/{user_id} – изменение задачи пользователя, по заданному id. Меняем задачу пользователя по id = 1 с write на read. Если изменение прошло успешно, возвращается сообщение "change is complete", иначе ошибка 404 – пользователь не найден.
+
+![](/4lab_restAPI/docs/put_todo_1_task-read.png)
+
+![](/4lab_restAPI/docs/put_todo_2_not_found.png)
