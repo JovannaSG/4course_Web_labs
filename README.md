@@ -48,7 +48,7 @@
 - Получение пользователей GET http://localhost:8080/realms/realm/protocol/openid-connect/userinfo
 - Получение токена по refresh токену POST http://localhost:8080/realms/test-realm/protocol/openid-connect/token
 - Получение информации про реалм GET http://localhost:8080/realms/test-realm/.well-known/uma2-configuration
-![]()
-![]()
-![]()
-![]()
+![](/3lab/Screenshot_1_request.png)
+![](/3lab/Screenshot_2_request.png)
+![](/3lab/Screenshot_3_request.png)
+![](/3lab/Screenshot_4_request.png)
