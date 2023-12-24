@@ -46,6 +46,7 @@
 ![](/3lab/Screenshot_dockerfile.png)
 
 Собираем docker image, запускаем docker image.
+
 6. Переходим на сайт 127.0.0.1:8080. Теперь создаем своего клиента
 ![](/3lab/Screenshot_keycloak_client_scopes.png)
 ![](/3lab/Screenshot_keycloak_clients.png)
@@ -71,3 +72,5 @@
 ![](/3lab/Screenshot_2_request.png)
 ![](/3lab/Screenshot_3_request.png)
 ![](/3lab/Screenshot_4_request.png)
+
+# 4 лабораторная работа
