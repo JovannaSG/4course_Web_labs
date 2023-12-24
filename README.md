@@ -20,17 +20,21 @@
 # 3 лабораторная работа
 
 1. Устанавливаем **ufw**  с помощью команды **sudo  apt  install  ufw**, запускаем его **sudo  ufw  enable**, проверяем запустился ли он с помощью команды **sudo  ufw  status**
+
 ![](/3lab/Screenshot_ufw_status.png)
 
 3. Устанавливаем **ssh**, с помощью команды **sudo  apt  install  ssh**, заходим в **sshd_config**. Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
+
 ![](/3lab/Screenshot_sshd_config_2.png)
 
 ![](/3lab/Screenshot_sshd_config_3.png)
 
 Заходим в **ssh_config**, меняем стандартный порт на 23.
+
 ![](/3lab/Screenshot_ssh_config_1.png)
 
 4. Устанавливаем postgresql (хотя чаще бывает, что postgresql  стоит по умолчанию). Заходим в оболочку postgresql  с помощью команды **sudo -****u** **postgres** **psql**. Создаем базу данных для keycloak и создаем пользователя для управления базой данных. Меняем порт для подключения postgresql
+
 ![](/3lab/port_postgers.png)
 
 ![](/3lab/Screenshot_postgres_db_list.png)
@@ -53,13 +57,16 @@
 ![](/3lab/Screenshot_keycloak_realm_roles.png)
 
 Добавляем своего пользователя
+
 ![](/3lab/Screenshot_keycloak_users.png)
+
 6. Теперь пишем запросы. Используя HTTP-клиент Postman, нужно протестировать отправку запросов на Keycloak.
 Необходимые виды запросов:
 - Получение токена по паролю POST
 - Получение пользователей GET http://localhost:8080/realms/realm/protocol/openid-connect/userinfo
 - Получение токена по refresh токену POST http://localhost:8080/realms/test-realm/protocol/openid-connect/token
 - Получение информации про реалм GET http://localhost:8080/realms/test-realm/.well-known/uma2-configuration
+
 ![](/3lab/Screenshot_1_request.png)
 ![](/3lab/Screenshot_2_request.png)
 ![](/3lab/Screenshot_3_request.png)
