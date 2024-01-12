@@ -19,11 +19,11 @@
 
 ## 3 лабораторная работа
 
-1. Устанавливаем `ufw`  с помощью команды `sudo  apt  install  ufw`, запускаем его `sudo  ufw  enable`, проверяем запустился ли он с помощью команды `sudo  ufw  status`
+1. Устанавливаем `ufw`  с помощью команды `sudo apt install ufw`, запускаем его `sudo ufw enable`, проверяем запустился ли он с помощью команды `sudo ufw status`
 
 ![](/3lab/Screenshot_ufw_status.png)
 
-2. Устанавливаем `ssh`, с помощью команды `sudo  apt  install  ssh`, заходим в `sshd_config`.
+2. Устанавливаем `ssh`, с помощью команды `sudo apt install ssh`, заходим в `sshd_config`.
 Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
 
 ![](/3lab/Screenshot_sshd_config_2.png)
@@ -52,7 +52,7 @@
 Собираем docker image `sudo docker build -f dockerfile -t keycloak_image .`, запускаем docker image `docker run -d -p 8080:8080 keycloak_image`.
 
 5. Переходим на сайт 127.0.0.1:8080. Теперь создаем своего клиента
-6. 
+
 ![](/3lab/Screenshot_keycloak_client_scopes.png)
 
 ![](/3lab/Screenshot_keycloak_clients.png)
@@ -80,7 +80,7 @@
 ![](/3lab/Screenshot_3_request.png)
 ![](/3lab/Screenshot_4_request.png)
 
-# 4 лабораторная работа
+## 4 лабораторная работа
 
 Метод **POST** /user – добавление пользователя. Добавляем пользователя do1 с задачей task1.
 
