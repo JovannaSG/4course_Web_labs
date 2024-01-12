@@ -37,7 +37,8 @@
 ![](/3lab/Screenshot_ssh_config_1.png)
 
 3. Устанавливаем **postgresql** хотя чаще бывает, что **postgresql**  стоит по умолчанию. Для проверки введем команду `sudo systemctl status postgresql`.
-Меняем порт для подключения postgresql и перезапускаем **postgresql** `systemctl restart postgresql`
+Меняем порт для подключения postgresql в файле `postgresql.conf` и меняем **127.0.0.1/32** на **all** в файле `pg_hba.conf`. 
+Перезапускаем **postgresql** `systemctl restart postgresql`
 
 ![](/3lab/port_postgers.png)
 
