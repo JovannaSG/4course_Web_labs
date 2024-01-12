@@ -46,7 +46,7 @@
 
 ![](/3lab/Screenshot_postgres_db_list.png)
 
-4. Скачиваем zip  архив keycloak с официального сайта, распаковываем его. В папке, где распаковали keycloak создаем текстовый файл dockerfile.
+4. Скачиваем zip  архив keycloak с официального сайта, распаковываем его в папку (назовем keycloak). В папке, где распаковали zip архив создаем текстовый файл dockerfile.
 
 ![](/3lab/Screenshot_dockerfile.png)
 
