@@ -19,7 +19,7 @@
 
 ## 3 лабораторная работа
 
-1. Устанавливаем `ufw`  с помощью команды `sudo apt install ufw`, запускаем его `sudo ufw enable`, проверяем запустился ли он с помощью команды `sudo ufw status`
+1. Устанавливаем `ufw`  с помощью команды `sudo apt install ufw`, запускаем его `sudo ufw enable`, проверяем запустился ли он с помощью команды `sudo ufw status`. Также сразу добавим правила с портами 1488, 8080, 23 с помощью команды `sudo ufw allow {port number}`
 
 ![](/3lab/Screenshot_ufw_status.png)
 
