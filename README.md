@@ -1,7 +1,7 @@
 # Лабораторные работы по предмету "Сетевые технолгии" 4 курс
 
-# 2 лабораторная работа
-<h2>Концептуальная модель</h2>
+## 2 лабораторная работа
+### Концептуальная модель
 На основе анализа предметной области «Антикварный магазин», были выделены следующие информационные объекты, которые необходимо хранить в базе данных: ЖАНР (genre_id, genre_name), РЕЖИССЕР (director_id, derector_name), СТРАНА (country_id, country_name), КЛИЕНТ (buyer_id, buyer_name), ФИЛЬМ (film_id, genre_id, country_id, year_publication, available_number), АВТОР (author_id, author_name), МЕНЕДЖЕР (manager_id, login, password).
 Каждый из выделенных информационных объектов имеет следующие атрибуты:
 
@@ -13,19 +13,22 @@
  - МЕНЕДЖЕР – логин, пароль;
 
 ![ER-диаграмма предметной области "Антикварный магазин"](/2lab/ER_диаграмма_2лаба.png)
-<h2>Логическая модель</h2>
+### Логическая модель
 
 ![логическая модель ПО "Антикварный магазин"](/2lab/логическая%20модель%20антикварный%20магазин.png)
 
-# 3 лабораторная работа
+## 3 лабораторная работа
 
-1. Устанавливаем **ufw**  с помощью команды **sudo  apt  install  ufw**, запускаем его **sudo  ufw  enable**, проверяем запустился ли он с помощью команды **sudo  ufw  status**
+1. Устанавливаем `ufw`  с помощью команды `sudo  apt  install  ufw`, запускаем его `sudo  ufw  enable`, проверяем запустился ли он с помощью команды `sudo  ufw  status`
 
 ![](/3lab/Screenshot_ufw_status.png)
 
-2. Устанавливаем **ssh**, с помощью команды **sudo  apt  install  ssh**, заходим в **sshd_config**. Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
+2. Устанавливаем `ssh`, с помощью команды `sudo  apt  install  ssh`, заходим в `sshd_config`.
+Запрещаем подключения через root-пользователя и разрешаем только созданному нами пользователю.
 
 ![](/3lab/Screenshot_sshd_config_2.png)
+
+Разрешаем своему пользователю подключение
 
 ![](/3lab/Screenshot_sshd_config_3.png)
 
@@ -33,25 +36,29 @@
 
 ![](/3lab/Screenshot_ssh_config_1.png)
 
-3. Устанавливаем postgresql (хотя чаще бывает, что postgresql  стоит по умолчанию). Заходим в оболочку postgresql  с помощью команды **sudo -****u** **postgres** **psql**. Создаем базу данных для keycloak и создаем пользователя для управления базой данных. Меняем порт для подключения postgresql
+3. Устанавливаем **postgresql** хотя чаще бывает, что **postgresql**  стоит по умолчанию. Для проверки введем команду `sudo systemctl status postgresql`.
+Меняем порт для подключения postgresql и перезапускаем **postgresql** `systemctl restart postgresql`
 
 ![](/3lab/port_postgers.png)
 
-![](/3lab/Screenshot_postgres_db_list.png)
+Заходим в оболочку postgresql  с помощью команды `sudo -u postgres psql`. Создаем базу данных для keycloak `CREATE DATABASE keycloak OWNER postgres` и создаем пользователя для управления базой данных (можно и оставить стандартного пользователя) `CREATE ROLE keycloak_owner WITH SUPERUSER`
 
-![](/3lab/Screenshot_keycloak_users.png)
+![](/3lab/Screenshot_postgres_db_list.png)
 
 4. Скачиваем zip  архив keycloak с официального сайта, распаковываем его. В папке, где распаковали keycloak создаем текстовый файл dockerfile.
 
 ![](/3lab/Screenshot_dockerfile.png)
 
-Собираем docker image, запускаем docker image.
+Собираем docker image `sudo docker build -f dockerfile -t keycloak_image .`, запускаем docker image `docker run -d -p 8080:8080 keycloak_image`.
 
 5. Переходим на сайт 127.0.0.1:8080. Теперь создаем своего клиента
+6. 
 ![](/3lab/Screenshot_keycloak_client_scopes.png)
+
 ![](/3lab/Screenshot_keycloak_clients.png)
 
 Создаем свою группу
+
 ![](/3lab/Screenshot_keycloak_groups.png)
 
 Добавляем свою realm-role
