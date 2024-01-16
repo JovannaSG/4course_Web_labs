@@ -1,8 +1,8 @@
 from fastapi.responses import JSONResponse
 from fastapi import APIRouter, Depends
 
-from Database.database import *
-from Database.schemas import *
+from Database.database import SessionLocal, engine
+from Database.schemas import Base, ToDo
 from Models.model import UserCreate
 from authorization import *
 

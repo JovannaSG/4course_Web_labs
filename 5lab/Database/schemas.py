@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # Create a DeclarativeMeta instance
 Base = declarative_base()
 
+
 # Define To Do class inheriting from Base
 class ToDo(Base):
     __tablename__ = 'todos'
