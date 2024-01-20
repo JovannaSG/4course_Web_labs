@@ -160,3 +160,27 @@ def delete_film(
     db.commit()
 
     return {"message": "Film deleted successfully"}
+
+
+@client_router.get("/getFilms")
+def get_films(
+    db: Session = Depends(get_db),
+    role=Depends(KeycloakJWTBearerHandler())
+):
+    # Authorization check
+    if not verify_client_role(role):
+        raise HTTPException(status_code=403, detail={"message": "Denied permission"})
+
+    films = db.query(FILM).all()
+    data = dict()
+    data["films"] = list()
+    for f in films:
+        d = dict()
+        d["title"] = f.title
+        d["genre_id"] = f.genre_id
+        d["country_id"] = f.country_id
+        d["year_publication"] = f.year_publication
+        d["available number"] = f.available_number
+        data["films"].append(d)
+
+    return json.loads(json.dumps(data, default=str))

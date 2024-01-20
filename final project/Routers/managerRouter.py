@@ -8,7 +8,7 @@ from Database.schemas import *
 from Models.model import *
 from authorization import *
 
-import json
+# import json
 
 
 # Create tables
@@ -196,6 +196,31 @@ def delete_film(
     return {"message": "Film has been successfully deleted"}
 
 
+@manager_router.get("/Films")
+def get_films(
+    db: Session = Depends(get_db),
+    role=Depends(KeycloakJWTBearerHandler())
+):
+    # Authorization check
+    if not verify_manager_role(role):
+        raise HTTPException(status_code=403, detail={"message": "Denied permission"})
+
+    films = db.query(FILM).all()
+    data = dict()
+    data["films"] = list()
+    for f in films:
+        d = dict()
+        d["film_id"] = f.film_id
+        d["title"] = f.title
+        d["genre_id"] = f.genre_id
+        d["country_id"] = f.country_id
+        d["year_publication"] = f.year_publication
+        d["available number"] = f.available_number
+        data["films"].append(d)
+
+    return json.loads(json.dumps(data, default=str))
+
+
 # ------------------------------------ Client management ------------------------------------------------------
 
 @manager_router.post("/addClient")
@@ -313,3 +338,26 @@ def delete_client(
     db.commit()
 
     return {"message": "Client has been successfully deleted"}
+
+
+@manager_router.get("/Clients")
+def get_clients(
+    db: Session = Depends(get_db),
+    role=Depends(KeycloakJWTBearerHandler())
+):
+    # Authorization check
+    if not verify_manager_role(role):
+        raise HTTPException(status_code=403, detail={"message": "Denied permission"})
+
+    films = db.query(CLIENT).all()
+    data = dict()
+    data["clients"] = list()
+    for f in films:
+        d = dict()
+        d["client_id"] = f.client_id
+        d["client_name"] = f.client_name
+        d["phone number"] = f.phone_number
+        d["email"] = f.email_adress
+        data["clients"].append(d)
+
+    return json.loads(json.dumps(data, default=str))

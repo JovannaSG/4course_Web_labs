@@ -4,8 +4,7 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import jwt
 
 
-
-CLIENT_SECRET = "6eaRF63ryNuxfgJ2ePoySBrhf8Bpbphv"
+# CLIENT_SECRET = "6eaRF63ryNuxfgJ2ePoySBrhf8Bpbphv"
 ALGORITHM = "RS256"
 
 
@@ -37,7 +36,7 @@ class KeycloakJWTBearerHandler(HTTPBearer):
     def _verify_jwt(credentials):
         decode_credentials = KeycloakJWTBearerHandler._decode_jwt(credentials)
 
-        # check if the user has the role: my-role
+        # check if the user has the role: main_role
         roles: list = decode_credentials["payload"]["realm_access"]["roles"]
         if "main_role" not in roles:
             raise HTTPException(
